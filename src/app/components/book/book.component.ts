@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Book } from 'src/app/models/book';
 import { BookService } from 'src/app/providers/book.service';
 
@@ -8,14 +8,13 @@ import { BookService } from 'src/app/providers/book.service';
   styleUrls: ['./book.component.css']
 })
 export class BookComponent implements OnInit {
-  book = new Book();
+  @Input()
+  book: Book = new Book;
 
-  constructor(private bookService: BookService) { 
+  constructor() { 
   }
 
-  ngOnInit(): void {
-    this.book = this.bookService.getFavorite();
-  }
+  ngOnInit(): void {}
 
   favorite(): void {
     console.log('was added to favorites');
