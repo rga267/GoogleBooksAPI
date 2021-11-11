@@ -1,0 +1,21 @@
+.title{
+    font-size: 25px;
+}
+
+.description{
+    font-size: 25px;
+}
+
+.author{
+    font-size: 25px;
+}
+
+.type{
+    font-size: 25px;
+}
+
+.thumbnail img{
+    max-width: 300px; 
+    max-height: 300px;
+    
+}
