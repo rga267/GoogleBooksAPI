@@ -21,7 +21,7 @@ describe('BookService', () => {
       let result: Book = service.getFavorite();
       expect(result).toBeTruthy();
     });
-    
+
   });
 
   describe('getSearchResults', () => {
@@ -38,6 +38,23 @@ describe('BookService', () => {
         expect(results[i].title).toBe('Search Result '+i);
       }
     });
+  });
+
+  describe('getBooksToRead', () => {
+
+    it('returns 3 books', () => {
+      let result: Book[] = service.getBooksToRead();
+      expect(result).toBeTruthy();
+      expect(result.length).toBe(3);
+    });
+
+    it('has title "To Read #"', () => {
+      let result: Book[] = service.getBooksToRead();
+      for(let i=0;i<3;i++){
+        expect(result[i].title).toBe('To Read '+i);
+      }
+    });
+    
   });
 
 });

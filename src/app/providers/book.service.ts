@@ -22,4 +22,17 @@ export class BookService {
 
     return results;
   }
+
+  getBooksToRead(): Book[] {
+    let results: Book[] = [];
+    for(let i=0; i<3; i++){
+      let result: Book = new Book();
+      result.title = 'To Read '+i;
+      results.push(result);
+    }
+
+    return results;
+  }
+
+
 }
