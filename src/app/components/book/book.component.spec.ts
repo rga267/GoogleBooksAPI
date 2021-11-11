@@ -47,4 +47,11 @@ describe('BookComponent', () => {
     const labelElement = fixture.debugElement.query(By.css('.thumbnail img'));
     expect(labelElement.nativeElement.getAttribute('src')).toBe(component.book.thumbnail);
   });
+
+  it('button should call favorite method when clicked', () => {
+    const labelElement = fixture.debugElement.query(By.css(".favorite"));
+    spyOn(component, 'favorite');
+    labelElement.nativeElement.click();
+    expect(component.favorite).toHaveBeenCalled();
+  });
 });
