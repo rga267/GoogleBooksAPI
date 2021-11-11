@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { By } from '@angular/platform-browser';
 import { BookComponent } from './book.component';
 
 describe('BookComponent', () => {
@@ -22,4 +22,9 @@ describe('BookComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('shows the title of a book', () => {
+    const labelElement = fixture.debugElement.query(By.css('.title'));
+    expect(labelElement.nativeElement.textContent).toContain('Title: '+component.book.title);
+  })
 });
