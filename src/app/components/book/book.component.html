@@ -16,6 +16,6 @@
     <div class="type">
         Type: {{book.type}}
     </div>
-    <button (click)="favorite()" class="favorite">Favorite</button>
+    <button *ngIf="!isFavorite" (click)="favorite()" class="favorite">Favorite</button>
 </div>
 

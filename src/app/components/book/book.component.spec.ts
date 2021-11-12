@@ -51,6 +51,38 @@ describe('BookComponent', () => {
     expect(labelElement.nativeElement.getAttribute('src')).toBe(component.book.thumbnail);
   });
 
+});
+
+describe('favorite button', () => {
+  let component: BookComponent;
+  let fixture: ComponentFixture<BookComponent>;
+
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ BookComponent ]
+    })
+    .compileComponents();
+  });
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(BookComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('has a favorite button when the book is not a favorite', () => {
+    component.isFavorite = false;
+    fixture.detectChanges();
+    const favoriteButton = fixture.debugElement.query(By.css('.favorite'));
+    expect(favoriteButton.nativeElement).toBeDefined();
+  });
+  it('does not have a favorite button when the book is a favorite', () => {
+    component.isFavorite = true;
+    fixture.detectChanges();
+    const favoriteButton = fixture.debugElement.query(By.css('.favorite'));
+    expect(favoriteButton).toBeNull();
+  });
   it('button should call favorite method when clicked', () => {
     const labelElement = fixture.debugElement.query(By.css(".favorite"));
     spyOn(component, 'favorite');
@@ -63,5 +95,4 @@ describe('BookComponent', () => {
     component.favorite();
     expect(component.favoriteEvent.emit).toHaveBeenCalledWith(component.book);
   });
-
 });

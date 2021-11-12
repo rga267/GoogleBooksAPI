@@ -15,6 +15,8 @@ export class BookComponent implements OnInit {
   @Output()
   favoriteEvent: EventEmitter<Book> = new EventEmitter();
 
+  isFavorite: Boolean = false;
+
   constructor() { 
   }
 
