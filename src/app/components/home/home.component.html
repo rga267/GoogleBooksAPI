@@ -3,6 +3,10 @@
     (favoriteEvent)="favorite($event)"
     class ="favoriteBook"></gb-book>
 <div class="booksToRead">
+    <a class="addNewBook"
+        [routerLink]="['/newBook']">
+        Add Book
+    </a>
     <h3>Books to Read</h3>
     <div *ngFor="let book of booksToRead">
         <gb-book [book]="book"

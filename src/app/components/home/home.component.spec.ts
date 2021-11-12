@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { RouterTestingModule } from '@angular/router/testing';
 import { Book } from 'src/app/models/book';
 import { BookService } from 'src/app/providers/book.service';
 import { BookComponent } from '../book/book.component';
@@ -22,6 +24,7 @@ describe('HomeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [ RouterTestingModule ],
       declarations: [ HomeComponent, BookComponent ],
       providers: [{
         provide: BookService,
@@ -88,7 +91,11 @@ describe('HomeComponent', () => {
         const booksToRead = fixture.debugElement.queryAll(By.css(".booksToRead gb-book"))
         expect(booksToRead.length).toBe(3);
       });
+      it('has a "Add Book" link', () => {
+        const anchorElement = fixture.debugElement.query(By.css('.booksToRead .addNewBook'));
+        expect(anchorElement.nativeElement).toBeDefined();
+      });
     });
   });
-  
+
 });
