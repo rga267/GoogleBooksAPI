@@ -8,16 +8,6 @@ import { BookComponent } from './components/book/book.component';
 import { Book } from './models/book';
 import { BookService } from './providers/book.service';
 
-let service: BookService;
-
-class MockBookService{
-  getFavorite(): Book {
-    return new Book();
-  }
-  getBooksToRead(): Book[]{
-    return [];
-  }
-}
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -31,14 +21,8 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent,
         BookComponent
-      ],
-      providers: [{
-        provide: BookService,
-        useClass: MockBookService
-      }]
-    }).compileComponents().then(() => {
-      service = TestBed.inject(BookService);
-    });
+      ]
+    }).compileComponents()
   });
 
   beforeEach(() => {
@@ -52,54 +36,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
-  });
-
-  describe('ngOnInit', () => {
-    it('sets the book to be the favorite from the BookService', () => {
-      let book: Book = new Book();
-      book.title = 'test book';
-      spyOn(service, 'getFavorite').and.returnValue(book);
-      component.ngOnInit();
-      fixture.detectChanges();
-      expect(service.getFavorite).toHaveBeenCalled();
-      expect(component.favoriteBook).toBe(book);
-    });
-    it('sets the booksToRead to be the booksToRead from the BookService', () => {
-      const booksToRead: Book[] = [new Book(), new Book(), new Book()];
-      spyOn(service, 'getBooksToRead').and.returnValue(booksToRead);
-      component.ngOnInit();
-      fixture.detectChanges();
-      expect(service.getBooksToRead).toHaveBeenCalled();
-      expect(component.booksToRead).toBe(booksToRead);
-    });
-  });
-
-  describe('addToFavoriteEvent', () => {
-    it('sets the favoriteBook property to be the passed value', () => {
-      let oldFavorite: Book = new Book();
-      let newFavorite: Book = new Book();
-      newFavorite.title = 'new title';
-      component.favoriteBook = oldFavorite;
-      component.favorite(newFavorite);
-      expect(component.favoriteBook).toBe(newFavorite);
-    });
-  });
-
-  describe('template', () => {
-    it('calls favorite when the book component emits a favoriteBookEvent', () => {
-      spyOn(component, 'favorite');
-      const bookElement = fixture.debugElement.query(By.css('gb-book'));
-      bookElement.nativeElement.dispatchEvent(new Event('favoriteEvent'));
-      expect(component.favorite).toHaveBeenCalled();
-    });
-    describe('booksToRead section', () => {
-      it('renders a book object for each book in booksToRead', () => {
-        component.booksToRead = [new Book(), new Book(), new Book()];
-        fixture.detectChanges();
-        const booksToRead = fixture.debugElement.queryAll(By.css(".booksToRead gb-book"))
-        expect(booksToRead.length).toBe(3);
-      });
-    });
   });
 
 });
