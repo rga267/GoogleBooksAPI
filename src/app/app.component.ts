@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
   }
   ngOnInit(): void {
     this.favoriteBook = this.bookService.getFavorite();
+    this.booksToRead = this.bookService.getBooksToRead();
   }
 
   favorite(book: Book): void {

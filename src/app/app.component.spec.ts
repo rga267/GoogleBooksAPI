@@ -14,6 +14,9 @@ class MockBookService{
   getFavorite(): Book {
     return new Book();
   }
+  getBooksToRead(): Book[]{
+    return [];
+  }
 }
 
 describe('AppComponent', () => {
@@ -61,6 +64,9 @@ describe('AppComponent', () => {
       expect(service.getFavorite).toHaveBeenCalled();
       expect(component.favoriteBook).toBe(book);
     });
+    it('sets the booksToRead to be the booksToRead from the BookService', () => {
+
+    });
   });
 
   describe('addToFavoriteEvent', () => {
@@ -80,6 +86,11 @@ describe('AppComponent', () => {
       const bookElement = fixture.debugElement.query(By.css('gb-book'));
       bookElement.nativeElement.dispatchEvent(new Event('favoriteEvent'));
       expect(component.favorite).toHaveBeenCalled();
+    });
+    describe('booksTORead section', () => {
+      it('renders a book object for each book in booksToRead', () => {
+
+      });
     });
   });
 
