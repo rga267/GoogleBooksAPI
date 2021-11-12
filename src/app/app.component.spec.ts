@@ -63,7 +63,7 @@ describe('AppComponent', () => {
     });
   });
 
-  describe('addTOFavorite', () => {
+  describe('addToFavoriteEvent', () => {
     it('sets the favoriteBook property to be the passed value', () => {
       let oldFavorite: Book = new Book();
       let newFavorite: Book = new Book();
@@ -75,7 +75,7 @@ describe('AppComponent', () => {
   });
 
   describe('template', () => {
-    it('calls favorite when the book component emits a favoriteEvent', () => {
+    it('calls favorite when the book component emits a favoriteBookEvent', () => {
       spyOn(component, 'favorite');
       const bookElement = fixture.debugElement.query(By.css('gb-book'));
       bookElement.nativeElement.dispatchEvent(new Event('favoriteEvent'));

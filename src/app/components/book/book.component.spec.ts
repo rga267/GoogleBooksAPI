@@ -59,9 +59,9 @@ describe('BookComponent', () => {
   });
 
   it('emits a favorite event with the current book when the favorite method is invoked', () => {
-    spyOn(component.favoriteBookEvent, 'emit');
+    spyOn(component.favoriteEvent, 'emit');
     component.favorite();
-    expect(component.favoriteBookEvent.emit).toHaveBeenCalledWith(component.book);
+    expect(component.favoriteEvent.emit).toHaveBeenCalledWith(component.book);
   });
 
 });
