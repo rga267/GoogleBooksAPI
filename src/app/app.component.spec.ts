@@ -65,7 +65,12 @@ describe('AppComponent', () => {
       expect(component.favoriteBook).toBe(book);
     });
     it('sets the booksToRead to be the booksToRead from the BookService', () => {
-
+      const booksToRead: Book[] = [new Book(), new Book(), new Book()];
+      spyOn(service, 'getBooksToRead').and.returnValue(booksToRead);
+      component.ngOnInit();
+      fixture.detectChanges();
+      expect(service.getBooksToRead).toHaveBeenCalled();
+      expect(component.booksToRead).toBe(booksToRead);
     });
   });
 
@@ -87,9 +92,12 @@ describe('AppComponent', () => {
       bookElement.nativeElement.dispatchEvent(new Event('favoriteEvent'));
       expect(component.favorite).toHaveBeenCalled();
     });
-    describe('booksTORead section', () => {
+    describe('booksToRead section', () => {
       it('renders a book object for each book in booksToRead', () => {
-
+        component.booksToRead = [new Book(), new Book(), new Book()];
+        fixture.detectChanges();
+        const booksToRead = fixture.debugElement.queryAll(By.css(".booksToRead gb-book"))
+        expect(booksToRead.length).toBe(3);
       });
     });
   });
