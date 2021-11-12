@@ -11,11 +11,12 @@ import { EventEmitter } from '@angular/core';
 export class BookComponent implements OnInit {
   @Input()
   book: Book = new Book;
+  
+  @Input()
+  isFavorite: Boolean = false;
 
   @Output()
   favoriteEvent: EventEmitter<Book> = new EventEmitter();
-
-  isFavorite: Boolean = false;
 
   constructor() { 
   }

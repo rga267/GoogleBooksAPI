@@ -9,6 +9,7 @@ import { BookService } from './providers/book.service';
 })
 export class AppComponent implements OnInit {
   favoriteBook: Book;
+  booksToRead: Book[] = [];
 
   constructor(private bookService: BookService){
     this.favoriteBook = new Book();
