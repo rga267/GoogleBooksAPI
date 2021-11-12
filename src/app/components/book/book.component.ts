@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { Book } from 'src/app/models/book';
 import { BookService } from 'src/app/providers/book.service';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'gb-book',
@@ -11,13 +12,16 @@ export class BookComponent implements OnInit {
   @Input()
   book: Book = new Book;
 
+  @Output()
+  favoriteBookEvent: EventEmitter<Book> = new EventEmitter<Book>();
+
   constructor() { 
   }
 
   ngOnInit(): void {}
 
   favorite(): void {
-    console.log('was added to favorites');
+    this.favoriteBookEvent.emit(this.book);
   }
 
 }
