@@ -14,6 +14,9 @@ class MockBookService{
   getFavorite(): Book {
     return new Book();
   }
+  setFavorite(book: Book): void {
+
+  }
   getBooksToRead(): Book[]{
     return [];
   }
@@ -49,15 +52,6 @@ describe('HomeComponent', () => {
   });
 
   describe('ngOnInit', () => {
-    it('sets the book to be the favorite from the BookService', () => {
-      let book: Book = new Book();
-      book.title = 'test book';
-      spyOn(service, 'getFavorite').and.returnValue(book);
-      component.ngOnInit();
-      fixture.detectChanges();
-      expect(service.getFavorite).toHaveBeenCalled();
-      expect(component.favoriteBook).toBe(book);
-    });
     it('sets the booksToRead to be the booksToRead from the BookService', () => {
       const booksToRead: Book[] = [new Book(), new Book(), new Book()];
       spyOn(service, 'getBooksToRead').and.returnValue(booksToRead);
@@ -69,13 +63,13 @@ describe('HomeComponent', () => {
   });
 
   describe('addToFavoriteEvent', () => {
-    it('sets the favoriteBook property to be the passed value', () => {
-      let oldFavorite: Book = new Book();
+    it('sets the favorite property with the passed value', () => {
+      const bookService: BookService = TestBed.inject(BookService);
+      spyOn(bookService, 'setFavorite');
       let newFavorite: Book = new Book();
       newFavorite.title = 'new title';
-      component.favoriteBook = oldFavorite;
       component.favorite(newFavorite);
-      expect(component.favoriteBook).toBe(newFavorite);
+      expect(bookService.setFavorite).toHaveBeenCalledWith(newFavorite);
     });
   });
 

@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { BookFormComponent } from './book-form.component';
 
@@ -8,6 +9,7 @@ describe('BookFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [ReactiveFormsModule],
       declarations: [ BookFormComponent ]
     })
     .compileComponents();
@@ -22,4 +24,6 @@ describe('BookFormComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  
 });

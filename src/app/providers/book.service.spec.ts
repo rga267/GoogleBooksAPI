@@ -57,6 +57,21 @@ describe('BookService', () => {
     
   });
 
+  describe('getFavorite', () => {
+    it('returns a book', () => {
+      let result: Book = service.getFavorite();
+      expect(result).toBeTruthy();
+    });
+  });
+  describe ('setFavorite', () => {
+    it('stores the passed book as the favorite', () => {
+      const newFavorite= new Book();
+      newFavorite.title= 'new favorite';
+      service.setFavorite(newFavorite);
+      expect(service.favorite).toBe(newFavorite);
+    });
+  });
+
 });
 
 

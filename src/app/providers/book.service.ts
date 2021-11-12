@@ -5,11 +5,16 @@ import { Book } from '../models/book';
   providedIn: 'root'
 })
 export class BookService {
+  favorite: Book;
 
-  constructor() { }
+  constructor() { this.favorite = new Book(); }
 
   getFavorite(): Book {
-    return new Book();
+    return this.favorite;
+  }
+
+  setFavorite(book: Book): void {
+    this.favorite = book;
   }
 
   getSearchResults(term: string): Book[] {

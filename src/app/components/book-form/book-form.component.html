@@ -1,1 +1,8 @@
-<p>book-form works!</p>
+<form [formGroup]="bookDetails" (ngSubmit)="addBook()">
+    <div><label>Title: </label><input [formControl]="title" class="title"/></div>
+    <div><label>Description: </label><input [formControl]="description" class="description"/></div>
+    <div><label>Thumbnail: </label><input [formControl]="thumbnail" class="thumbnail"/></div>
+    <div><label>Author: </label><input [formControl]="author" class="author"/></div>
+    <div><label>Type: </label><input [formControl]="type" class="type"/></div>
+    <button type="submit">Add</button>
+</form>

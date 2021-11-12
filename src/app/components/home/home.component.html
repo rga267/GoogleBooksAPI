@@ -1,5 +1,6 @@
+<link rel="stylesheet" href="home.component.css">
 <gb-search></gb-search>
-<gb-book [book]="favoriteBook" 
+<gb-book [book]="bookService.getFavorite()" 
     [isFavorite]="true"
     (favoriteEvent)="favorite($event)"
     class ="favoriteBook"></gb-book>
