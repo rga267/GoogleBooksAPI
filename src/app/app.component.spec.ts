@@ -1,6 +1,7 @@
 import { componentFactoryName } from '@angular/compiler';
 import { Component } from '@angular/core';
 import { ComponentFixture, ComponentFixtureAutoDetect, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { BookComponent } from './components/book/book.component';
@@ -59,6 +60,26 @@ describe('AppComponent', () => {
       fixture.detectChanges();
       expect(service.getFavorite).toHaveBeenCalled();
       expect(component.favoriteBook).toBe(book);
+    });
+  });
+
+  describe('addTOFavorite', () => {
+    it('sets the favoriteBook property to be the passed value', () => {
+      let oldFavorite: Book = new Book();
+      let newFavorite: Book = new Book();
+      newFavorite.title = 'new title';
+      component.favoriteBook = oldFavorite;
+      component.favorite(newFavorite);
+      expect(component.favoriteBook).toBe(newFavorite);
+    });
+  });
+
+  describe('template', () => {
+    it('calls favorite when the book component emits a favoriteEvent', () => {
+      spyOn(component, 'favorite');
+      const bookElement = fixture.debugElement.query(By.css('gb-book'));
+      bookElement.nativeElement.dispatchEvent(new Event('favoriteEvent'));
+      expect(component.favorite).toHaveBeenCalled();
     });
   });
 

@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
   }
 
   favorite(book: Book): void {
-    alert('Book Favorited');
+    this.favoriteBook = book;
   }
 
 
